@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,11 +48,14 @@ public class RecordFragment extends Fragment {
 
         recyclerView = rootView.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         try {
-            List<Diary> diaries = diaryRepository.getAll();
-            recordAdapter = new RecordAdapter(diaries);
-            recyclerView.setAdapter(recordAdapter);
+            diaryRepository.getAll().observe(getViewLifecycleOwner(), new Observer<List<Diary>>() {
+                @Override
+                public void onChanged(List<Diary> diaries) {
+                    recordAdapter = new RecordAdapter(diaries);
+                    recyclerView.setAdapter(recordAdapter);
+                }
+            });
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

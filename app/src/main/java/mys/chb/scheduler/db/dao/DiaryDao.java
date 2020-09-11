@@ -1,5 +1,6 @@
 package mys.chb.scheduler.db.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -19,7 +20,7 @@ public interface DiaryDao {
     void delete(Long id);*/
 
     @Query("SELECT * FROM diary ORDER BY createDate desc")
-    List<Diary> getAll();
+    LiveData<List<Diary>> getAll();
 
     @Query("SELECT * FROM diary WHERE createDate=:date")
     Diary get(String date);
