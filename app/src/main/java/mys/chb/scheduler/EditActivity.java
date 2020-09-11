@@ -38,7 +38,7 @@ public class EditActivity extends AppCompatActivity {
         title = findViewById(R.id.title);
 
         editor.setEditorHeight(200);
-        editor.setEditorFontSize(22);
+        editor.setEditorFontSize(16);
         editor.setBackgroundResource(R.drawable.bg);
         editor.setBackground("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg");
         editor.setPadding(10, 10, 10, 10);
