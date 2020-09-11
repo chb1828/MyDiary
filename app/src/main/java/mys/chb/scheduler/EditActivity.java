@@ -18,7 +18,7 @@ public class EditActivity extends AppCompatActivity {
 
     TextView content,title;
     private DiaryRepository diaryRepository;
-    private Date clickedDate;
+    private Date currentDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class EditActivity extends AppCompatActivity {
         Diary newDiary = new Diary();
         newDiary.setContent(content.getText().toString());
         newDiary.setTitle(title.getText().toString());
-        newDiary.setCreateDate(new Date());
+        newDiary.setCreateDate(currentDate);
         diaryRepository.insert(newDiary);
     }
 
@@ -45,14 +45,13 @@ public class EditActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Intent intent = getIntent();
-        Date date = null;
         if(intent !=null) {
             if(intent.hasExtra("clickedDate"))
-                date =(Date)intent.getExtras().get("clickedDate");
+                currentDate =(Date)intent.getExtras().get("clickedDate");
             else
-                date= new Date();
+                currentDate= new Date();
         }
-        Diary diary = getContent(date);
+        Diary diary = getContent(currentDate);
         if(diary!=null) {
             content.setText(diary.getContent());
             title.setText(diary.getTitle());
