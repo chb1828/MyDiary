@@ -11,7 +11,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="수정이의 일기"
+        android:text="기억"
         android:gravity="center"
         android:textStyle="bold"
         android:textSize="20dp"/>
