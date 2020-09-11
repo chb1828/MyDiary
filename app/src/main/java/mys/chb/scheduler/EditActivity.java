@@ -1,6 +1,7 @@
 package mys.chb.scheduler;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ public class EditActivity extends AppCompatActivity {
 
     TextView content,title;
     private DiaryRepository diaryRepository;
+    private Date currentDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,29 +34,34 @@ public class EditActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if(content.getText().toString().length()!=0 || title.getText().toString().length()!=0) {
-            Diary newDiary = new Diary();
-            newDiary.setContent(content.getText().toString());
-            newDiary.setTitle(title.getText().toString());
-            newDiary.setCreateDate(new Date());
-            diaryRepository.insert(newDiary);
-        }
+        Diary newDiary = new Diary();
+        newDiary.setContent(content.getText().toString());
+        newDiary.setTitle(title.getText().toString());
+        newDiary.setCreateDate(currentDate);
+        diaryRepository.insert(newDiary);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Diary diary = getContent();
+        Intent intent = getIntent();
+        if(intent !=null) {
+            if(intent.hasExtra("clickedDate"))
+                currentDate =(Date)intent.getExtras().get("clickedDate");
+            else
+                currentDate= new Date();
+        }
+        Diary diary = getContent(currentDate);
         if(diary!=null) {
             content.setText(diary.getContent());
             title.setText(diary.getTitle());
         }
     }
 
-    private Diary getContent() {
+    private Diary getContent(Date cDate) {
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        String date = simpleDateFormat.format(new Date());
+        String date = simpleDateFormat.format(cDate);
         Diary diary = null;
         try {
             diary = diaryRepository.get(date);
