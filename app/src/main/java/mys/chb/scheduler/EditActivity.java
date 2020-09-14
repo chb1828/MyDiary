@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,8 @@ public class EditActivity extends AppCompatActivity {
     RichEditor editor;
     private DiaryRepository diaryRepository;
     private Date currentDate;
+    private Button closeButton,saveButton;
+    private boolean closeBtnCheck=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +47,38 @@ public class EditActivity extends AppCompatActivity {
         editor.setPadding(10, 10, 10, 10);
         editor.setPlaceholder("오늘의 말을 적어주세요");
 
+        clickEditorEventInit();
 
-        clickEventInit();
+        closeButton = findViewById(R.id.close_edit);
+        saveButton = findViewById(R.id.save_edit);
+
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                closeBtnCheck=true;
+                finish();
+            }
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Diary newDiary = new Diary();
-        newDiary.setContent(editor.getHtml());
-        newDiary.setTitle(title.getText().toString());
-        newDiary.setCreateDate(currentDate);
-        diaryRepository.insert(newDiary);
+        if(!closeBtnCheck) {
+            Diary newDiary = new Diary();
+            newDiary.setContent(editor.getHtml());
+            newDiary.setTitle(title.getText().toString());
+            newDiary.setCreateDate(currentDate);
+            diaryRepository.insert(newDiary);
+            closeBtnCheck = false;
+        }
     }
 
     @Override
@@ -91,7 +114,7 @@ public class EditActivity extends AppCompatActivity {
     }
 
 
-    public void clickEventInit() {
+    public void clickEditorEventInit() {
         findViewById(R.id.action_undo).setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
