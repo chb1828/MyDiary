@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active: docker
+server:
+  port: 8882
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:h2:file:./database/scheduler;AUTO_SERVER=TRUE
+    driver-class-name: org.h2.Driver
+    username: chb
+    password: su
+    platform: h2
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+---
+spring:
+  profiles: docker
+  datasource:
+    platform: postgres
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://db/scheduler
+    username: postgres
+    password: chb
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
