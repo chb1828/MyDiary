@@ -42,4 +42,16 @@ public class DiaryController {
         return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(diaryService.getList()));
     }
 
+    @DeleteMapping
+    public ResponseEntity<JSONResult> deleteAllDiary() {
+        diaryService.deleteAll();
+        return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(null,"모든 데이터 삭제 성공"));
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<JSONResult> deleteDiary(@PathVariable(value = "id") Long id) {
+        diaryService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(null,"데이터 삭제 성공"));
+    }
+
 }

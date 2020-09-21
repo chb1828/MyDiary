@@ -45,5 +45,11 @@ public class DiaryService {
         return diaryRepository.findAll();
     }
 
+    public void delete(Long id) {
+        diaryRepository.deleteById(id);
+    }
 
+    public void deleteAll() {
+        diaryRepository.deleteAll();
+    }
 }

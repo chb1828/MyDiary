@@ -41,8 +41,6 @@ public class EditActivity extends AppCompatActivity {
 
         editor.setEditorHeight(200);
         editor.setEditorFontSize(16);
-        editor.setBackgroundResource(R.drawable.bg);
-        editor.setBackground("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg");
         editor.setPadding(10, 10, 10, 10);
         editor.setPlaceholder("오늘의 말을 적어주세요");
 

@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import mys.chb.scheduler.ui.IndexFragment;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new ItemSelectedListener());
+
 
     }
 
