@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @RequestMapping("/diary")
 @RequiredArgsConstructor
@@ -17,14 +18,20 @@ public class DiaryController {
     private final DiaryService diaryService;
 
     @PostMapping
-    public ResponseEntity createDiary(DiaryDTO diaryDTO) {
+    public ResponseEntity<JSONResult> createDiary(DiaryDTO diaryDTO) {
         Diary diary = diaryService.save(diaryDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(JSONResult.success(diary,"저장 성공"));
     }
 
     @PutMapping
-    public ResponseEntity updateDiary(DiaryDTO diaryDTO) {
+    public ResponseEntity<JSONResult> updateDiary(DiaryDTO diaryDTO) {
         Diary diary = diaryService.update(diaryDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(JSONResult.success(diary,"수정 성공"));
+        return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(diary,"수정 성공"));
     }
+
+    @GetMapping
+    public ResponseEntity<JSONResult> getDiaryList() {
+        return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(diaryService.getList()));
+    }
+
 }
