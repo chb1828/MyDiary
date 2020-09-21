@@ -13,7 +13,7 @@ public class JSONResult {
 
     private String result; //Success ,Fail
     private String message; // 실패시 message
-    private Object data; // 성공시 돌려줄 데이터터
+    private Object data; // 성공시 돌려줄 데이터
 
     public static JSONResult success(Object data) {
         return new JSONResult("success",null,data);

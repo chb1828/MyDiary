@@ -3,6 +3,7 @@ package com.chb.scheduler.domain.entity;
 import com.chb.scheduler.domain.entity.audit.DateAudit;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class Diary extends DateAudit {
 
     @Id

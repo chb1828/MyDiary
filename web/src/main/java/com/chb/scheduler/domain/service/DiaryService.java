@@ -12,18 +12,23 @@ public class DiaryService {
 
     private final DiaryRepository diaryRepository;
 
-    public void save(DiaryDTO diaryDTO) {
+    public Diary save(DiaryDTO diaryDTO) {
         Diary diary = diaryRepository.save(Diary.builder()
                 .title(diaryDTO.getTitle())
                 .content(diaryDTO.getContent())
                 .build());
+        return diary;
     }
 
-    public void update(DiaryDTO diaryDTO) {
+    public Diary update(DiaryDTO diaryDTO) {
+        if(diaryDTO.getId()==null) {
+            throw new IllegalArgumentException("잘못된 요청입니다.");
+        }
         Diary diary = diaryRepository.save(Diary.builder()
                 .id(diaryDTO.getId())
                 .title(diaryDTO.getTitle())
                 .content(diaryDTO.getContent())
                 .build());
+        return diary;
     }
 }

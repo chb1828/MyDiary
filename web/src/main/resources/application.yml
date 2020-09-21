@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: docker
 server:
   port: 8882
 
@@ -31,5 +31,5 @@ spring:
     password: chb
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true

@@ -2,6 +2,7 @@ package com.chb.scheduler.domain.controller;
 
 import com.chb.scheduler.domain.dto.DiaryDTO;
 import com.chb.scheduler.domain.dto.JSONResult;
+import com.chb.scheduler.domain.entity.Diary;
 import com.chb.scheduler.domain.service.DiaryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,13 +18,13 @@ public class DiaryController {
 
     @PostMapping
     public ResponseEntity createDiary(DiaryDTO diaryDTO) {
-        diaryService.save(diaryDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(JSONResult.success(null,"저장 성공"));
+        Diary diary = diaryService.save(diaryDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(JSONResult.success(diary,"저장 성공"));
     }
 
     @PutMapping
     public ResponseEntity updateDiary(DiaryDTO diaryDTO) {
-        diaryService.update(diaryDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(JSONResult.success(null,"수정 성공"));
+        Diary diary = diaryService.update(diaryDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(JSONResult.success(diary,"수정 성공"));
     }
 }
