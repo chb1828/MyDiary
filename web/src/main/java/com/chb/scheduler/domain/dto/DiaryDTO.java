@@ -17,5 +17,5 @@ public class DiaryDTO {
 
     private String content;
 
-    private LocalDateTime createDate;
+    private String createDate;
 }

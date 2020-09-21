@@ -2,12 +2,13 @@ package com.chb.scheduler.domain.entity;
 
 import com.chb.scheduler.domain.entity.audit.DateAudit;
 import lombok.*;
-
+import javax.validation.constraints.NotBlank;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Entity
 @Builder
@@ -21,10 +22,12 @@ public class Diary extends DateAudit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String title;
 
     private String content;
 
-    private LocalDateTime createDate;
+    @NotNull
+    private LocalDate createDate;
 
 }
