@@ -2,6 +2,8 @@ package com.chb.scheduler.domain.dto;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Builder
 @Getter
 @Setter
@@ -14,4 +16,6 @@ public class DiaryDTO {
     private String title;
 
     private String content;
+
+    private String createDate;
 }

@@ -99,9 +99,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:text="기타"/>
+            android:text="시스템"/>
 
         <LinearLayout
+            android:id="@+id/save"
             android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -114,7 +115,7 @@
                 android:layout_weight="9"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="메뉴1"/>
+                android:text="데이터 저장하기"/>
             <ImageView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -122,6 +123,7 @@
                 android:src="@drawable/ic_baseline_keyboard_arrow_right_24"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/load"
             android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -134,14 +136,15 @@
                 android:layout_weight="9"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="메뉴2"/>
+                android:text="데이터 가져오기"/>
             <ImageView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_keyboard_arrow_right_24"/>
         </LinearLayout>
-        <LinearLayout
+
+<!--        <LinearLayout
             android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -180,7 +183,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_keyboard_arrow_right_24"/>
-        </LinearLayout>
+        </LinearLayout>-->
     </LinearLayout>
 
 </LinearLayout>

@@ -20,7 +20,10 @@ public interface DiaryDao {
     void delete(Long id);*/
 
     @Query("SELECT * FROM diary ORDER BY createDate desc")
-    LiveData<List<Diary>> getAll();
+    LiveData<List<Diary>> getAllLiveData();
+
+    @Query("SELECT * FROM diary ORDER BY createDate desc")
+    List<Diary> getAll();
 
     @Query("SELECT * FROM diary WHERE createDate=:date")
     Diary get(String date);

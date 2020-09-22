@@ -49,7 +49,7 @@ public class RecordFragment extends Fragment {
         recyclerView = rootView.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         try {
-            diaryRepository.getAll().observe(getViewLifecycleOwner(), new Observer<List<Diary>>() {
+            diaryRepository.getAllLiveData().observe(getViewLifecycleOwner(), new Observer<List<Diary>>() {
                 @Override
                 public void onChanged(List<Diary> diaries) {
                     recordAdapter = new RecordAdapter(diaries);

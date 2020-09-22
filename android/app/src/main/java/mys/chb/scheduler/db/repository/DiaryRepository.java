@@ -28,7 +28,9 @@ public class DiaryRepository {
 
     public Diary get(String date) throws ExecutionException, InterruptedException {return new GetAsyncTask(diaryDao).execute(date).get();}
 
-    public LiveData<List<Diary>> getAll() throws ExecutionException, InterruptedException {return new GetAllAsyncTask(diaryDao).execute().get();}
+    public LiveData<List<Diary>> getAllLiveData() throws ExecutionException, InterruptedException {return new GetAllLiveDataAsyncTask(diaryDao).execute().get();}
+
+    public List<Diary> getAll() throws ExecutionException, InterruptedException {return new GetAllAsyncTask(diaryDao).execute().get();}
 
     private static class InsertAsyncTask extends AsyncTask<Diary, Void, Void> {
         private DiaryDao mAsyncTaskDao;
@@ -57,18 +59,29 @@ public class DiaryRepository {
         }
     }
 
-    private static class GetAllAsyncTask extends AsyncTask<Void, Void, LiveData<List<Diary>>> {
+    private static class GetAllLiveDataAsyncTask extends AsyncTask<Void, Void, LiveData<List<Diary>>> {
         private DiaryDao mAsyncTaskDao;
 
-        GetAllAsyncTask(DiaryDao dao) {
+        GetAllLiveDataAsyncTask(DiaryDao dao) {
             mAsyncTaskDao=dao;
         }
 
         @Override
         protected LiveData<List<Diary>> doInBackground(Void... voids) {
-            return mAsyncTaskDao.getAll();
+            return mAsyncTaskDao.getAllLiveData();
         }
     }
 
+    private static class GetAllAsyncTask extends AsyncTask<Void, Void, List<Diary>> {
+        private DiaryDao mAsyncTaskDao;
+
+        GetAllAsyncTask(DiaryDao dao) {
+            mAsyncTaskDao=dao;
+        }
+        @Override
+        protected List<Diary> doInBackground(Void... voids) {
+            return mAsyncTaskDao.getAll();
+        }
+    }
 
 }
