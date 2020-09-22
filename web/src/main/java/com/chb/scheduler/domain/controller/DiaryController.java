@@ -19,6 +19,7 @@ public class DiaryController {
 
     private final DiaryService diaryService;
 
+    //주석 추가... 샘플
     @PostMapping
     public ResponseEntity<JSONResult> createDiary(DiaryDTO diaryDTO) {
         Diary diary = diaryService.save(diaryDTO);
