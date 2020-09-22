@@ -8,12 +8,13 @@ import mys.chb.scheduler.dto.DiaryDTO;
         import retrofit2.http.Body;
         import retrofit2.http.GET;
         import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface RetrofitService {
 
     @GET("/diary")
     Call<ApiDTO> getAllDiary();
 
-    @POST("/diary")
+    @PUT("/diary")
     Call<DiaryDTO> saveDiaryList(@Body DiaryDTO DiaryDTO);
 }

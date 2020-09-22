@@ -7,7 +7,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 
 import mys.chb.scheduler.db.entity.Diary;
 import mys.chb.scheduler.db.repository.DiaryRepository;
@@ -31,6 +30,7 @@ public class DiaryService {
             diaries  = repository.getAll();
 
             diaries.stream().map(f->DiaryDTO.builder()
+                    .id(f.getId())
                     .content(f.getContent())
                     .createDate(simpleDateFormat.format(f.getCreateDate()))
                     .title(f.getTitle())

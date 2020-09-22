@@ -2,4 +2,6 @@
     <string name="app_name">scheduler</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+   <!-- <string name="address">http://3.34.174.159:8882</string>-->
+    <string name="address">http://localhost:8882</string>
 </resources>

@@ -21,21 +21,10 @@ public class DiaryController {
 
     @PostMapping
     public ResponseEntity<JSONResult> createDiary(DiaryDTO diaryDTO) {
-/*        if(diaryDTO.getCreateDate()==null) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(JSONResult.fail("생성 날짜 없음"));
-        }
-        if(diaryDTO.getTitle()==null) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(JSONResult.fail("제목 없음"));
-        }*/
         Diary diary = diaryService.save(diaryDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(JSONResult.success(diary,"저장 성공"));
     }
 
-    @PutMapping
-    public ResponseEntity<JSONResult> updateDiary(DiaryDTO diaryDTO) {
-        Diary diary = diaryService.update(diaryDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(JSONResult.success(diary,"수정 성공"));
-    }
 
     @GetMapping
     public ResponseEntity<JSONResult> getDiaryList() {
